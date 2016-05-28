@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Practica 2: Galería Flickr</title>
+		<meta name="description" content="Practica 2 SD, una galería de Flickr">
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-2.2.2.js"></script>
+		<!-- jQuery UI style -->
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/black-tie/jquery-ui.css" />
+		<!-- jQuery UI -->
+		<script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<!-- Estilo -->
+		<link rel="stylesheet" href="estilo.css">
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<!-- Credenciales de Flickr -->
+		<script src="credencialesFlickr.js"></script>
+		<!-- Código jquery de la practica -->
+		<script src="app.js"></script>
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBbJ7qn_nvOTw313lTYl8BurKQSOF3E5SI&callback=iniciarMapa" async defer></script>
+	</head>
+	<body>
+		<div id="cargando">
+			<img id="cargando-image" src="cargando.gif" alt="Cargando..." />
+		</div>
+		<nav class="navbar navbar-inverse navbar-fixed-top">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Galería Flickr</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+						<li><a href="#" id="buscadorMenu">Buscador</a></li>
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div>
+			<div id="buscador" class="container">
+				<form>
+					<div class="row">
+						<div class="col-md-4 centrado">
+							<div class="form-group">
+								<label for="fechaLabelMin">Fecha de captura mínima</label>
+								<input type="text" class="form-control" id="minTakeDate" placeholder="Fecha de captura mínima">
+							</div>
+							<div class="form-group">
+								<label for="fechaLabelMax">Fecha de captura máxima</label>
+								<input type="text" class="form-control" id="maxTakeDate" placeholder="Fecha de captura máxima">
+							</div>
+						</div>
+						<div class="col-md-4 centrado">
+							<div class="form-group">
+								<label for="tagsLabel">Tags (separados por coma)</label>
+								<input type="text" class="form-control" id="tags" placeholder="Tags">
+							</div>
+							<div class="form-group">
+								<label for="contentLabel">Tipo de contenido</label>
+								<select class="form-control" id="contenido">
+									<option value="1">Solo fotografías</option>
+									<option value="2">Solo capturas de pantalla</option>
+									<option value="3">Solo otros</option>
+									<option value="4">Fotografías y capturas de pantalla</option>
+									<option value="5">Capturas de pantalla y otros</option>
+									<option value="6">Fotografías y otros</option>
+									<option value="7" selected="selected">Todos</option>
+								</select>
+							</div>
+							<button type="submit" class="btn btn-success margen_inferior" id="buscar">Buscar</button>
+						</div>
+						<div class="col-md-4 centrado">
+							<div class="form-group">
+								<label for="geoLabel">Geolocalización</label>
+								<input type="text" class="form-control" id="geolocalizacion" placeholder="Seleccionar coordenadas">
+								<div id="map"></div>
+							</div>
+							<div class="form-group">
+								<label for="seguroLabel">Búsqueda segura</label>
+								<select class="form-control" id="busquedaSegura">
+									<option value="1">Segura</option>
+									<option value="2">Moderada</option>
+									<option value="3">Restringida</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</nav>
+		<div class="container top">
+			<div id="map_canvas"></div>
+			<div id="galeria-container">
+				<h2 id="titulo"></h2>
+				<div id="vista-grande">
+				</div>
+			</div>
+			<ul id="miniaturas"></ul>
+		</div>
+    </body>
+</html>
